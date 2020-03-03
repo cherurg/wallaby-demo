@@ -17,7 +17,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "wallaby-demo": [
+        "dist/wallaby-demo/wallaby-demo",
+        "dist/wallaby-demo"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -2,5 +2,46 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1, 
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "wallaby-demo": {
+      "projectType": "library",
+      "root": "projects/wallaby-demo",
+      "sourceRoot": "projects/wallaby-demo/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/wallaby-demo/tsconfig.lib.json",
+            "project": "projects/wallaby-demo/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/wallaby-demo/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/wallaby-demo/src/test.ts",
+            "tsConfig": "projects/wallaby-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/wallaby-demo/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/wallaby-demo/tsconfig.lib.json",
+              "projects/wallaby-demo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "wallaby-demo"
 }
